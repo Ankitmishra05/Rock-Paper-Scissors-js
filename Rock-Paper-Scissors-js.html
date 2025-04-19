@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock, Paper, Scissors Game</title>
+</head>
+<body>
+    
+  <h1>Rock, Paper, Scissors</h1>
+  <div>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+  </div>
+
+  <h2>Your Choice: <span id="yourChoice"></span></h2>
+  <h2>Computer's Choice: <span id="computerChoice"></span></h2>
+  <h2>Result: <span id="result"></span></h2>
+
+  <script>
+   
+
+var choices = ['rock', 'paper', 'scissors'];
+var resultText = document.getElementById('result');
+var yourChoiceText = document.getElementById('yourChoice');
+var computerChoiceText = document.getElementById('computerChoice');
+
+
+function getComputerChoice() {
+  var randomIndex = Math.trunc(Math.random() * 3);
+  return choices[randomIndex];
+}
+
+
+function playGame(playerChoice) {
+  var computerChoice = getComputerChoice();
+
+  yourChoiceText.textContent = playerChoice;
+  computerChoiceText.textContent = computerChoice;
+
+  if (playerChoice === computerChoice) {
+    resultText.textContent = "It's a tie!";
+  } else if (
+    (playerChoice === 'rock' && computerChoice === 'scissors') ||
+    (playerChoice === 'paper' && computerChoice === 'rock') ||
+    (playerChoice === 'scissors' && computerChoice === 'paper')
+  ) {
+    resultText.textContent = "You win!";
+  } else {
+    resultText.textContent = "Computer wins!";
+  }
+}
+
+document.getElementById('rock').addEventListener('click', () => playGame('rock'));
+document.getElementById('paper').addEventListener('click', () => playGame('paper'));
+document.getElementById('scissors').addEventListener('click', () => playGame('scissors'));
+
+
+
+
+  </script>
+</body>
+</html>
